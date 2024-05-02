@@ -36,8 +36,12 @@ class MainActivity : AppCompatActivity() {
                 val claseConexion = ClaseConexion().cadenaConexion()
 
                 //2-creo una variable que tenga un PreparedStatement
-                val addProducto = claseConexion?.prepareStatement("insert into tbProductos(nombreProducto, precio, cantidad) values(?,?,?)")
-                
+                val addProducto = claseConexion?.prepareStatement("insert into tbProductos(nombreProducto, precio, cantidad) values(?,?,?)")!!
+                addProducto.setString(1, txtNombre.text.toString())
+                addProducto.setInt(2, txtPrecio.text.toString().toInt())
+                addProducto.setInt(3, txtCantidad.text.toString().toInt())
+                addProducto.executeUpdate()
+
             }
         }
 
